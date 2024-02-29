@@ -1,7 +1,7 @@
 package com.example.demo.modelo;
 
 import java.time.LocalDateTime;
-import java.util.LinkedList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +31,6 @@ public class Partida {
     @JoinTable(name = "partidas_usuarios",
                 joinColumns = @JoinColumn(name = "id_partidas"),
                 inverseJoinColumns = @JoinColumn(name ="id_usuarios") )
-    private LinkedList<Usuario> users;
+    private List<Usuario> users;
 
 }

@@ -1,7 +1,7 @@
 package com.example.demo.modelo;
 
 import java.time.LocalDateTime;
-import java.util.LinkedList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,11 +28,11 @@ public class Usuario {
     private LocalDateTime create_at;
 
     @OneToMany(mappedBy = "user")
-    private LinkedList<Sugerencia> sugerencias;
+    private List<Sugerencia> sugerencias;
     @OneToMany(mappedBy = "user")
-    private LinkedList<Mensaje> mensajes;
+    private List<Mensaje> mensajes;
 
     @ManyToMany(mappedBy = "users")
-    private LinkedList<Partida> partidas;
+    private List<Partida> partidas;
 
 }
