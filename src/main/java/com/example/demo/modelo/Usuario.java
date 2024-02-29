@@ -1,0 +1,38 @@
+package com.example.demo.modelo;
+
+import java.time.LocalDateTime;
+import java.util.LinkedList;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+
+@Entity(name = "usuarios")
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+    private String username;
+    private String email;
+    private String nombre;
+    private String apellido;
+    private Integer edad;
+    private String password;
+    private String rep_password;
+    private Boolean Enabled;
+    private String foto;
+    private String rol;
+    private LocalDateTime create_at;
+
+    @OneToMany(mappedBy = "user")
+    private LinkedList<Sugerencia> sugerencias;
+    @OneToMany(mappedBy = "user")
+    private LinkedList<Mensaje> mensajes;
+
+    @ManyToMany(mappedBy = "users")
+    private LinkedList<Partida> partidas;
+
+}
