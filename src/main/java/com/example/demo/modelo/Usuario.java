@@ -3,6 +3,8 @@ package com.example.demo.modelo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,8 @@ public class Usuario {
     private Boolean Enabled;
     private String foto;
     private String rol;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime create_at;
 
     @OneToMany(mappedBy = "user")
