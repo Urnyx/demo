@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,8 +13,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 
-@Entity(name = "partidas")
+@Entity
+@Table(name = "partidas")
 public class Partida {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -25,8 +28,10 @@ public class Partida {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "hora_inicio")
     private LocalDateTime horaInicio;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "hora_final")
     private LocalDateTime horaFinal;
     private Integer participantes;
     private Integer suplentes;
