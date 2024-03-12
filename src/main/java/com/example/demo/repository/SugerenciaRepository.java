@@ -4,8 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.modelo.Sugerencia;
 
-import java.util.List;
-
-public interface SugerenciaRepository extends JpaRepository<Sugerencia, Long>{
-
+public interface SugerenciaRepository extends JpaRepository<Sugerencia, Integer>{
+    
 }

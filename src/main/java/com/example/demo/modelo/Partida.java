@@ -3,10 +3,6 @@ package com.example.demo.modelo;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
@@ -21,14 +17,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "partidas")
-@Builder
-@AllArgsConstructor
-@Getter
-@Setter
 public class Partida {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private long id;
     private String creador;
     private String deporte;
     private String city;
@@ -51,6 +43,4 @@ public class Partida {
                 inverseJoinColumns = @JoinColumn(name ="id_usuarios") )
     private List<Usuario> users;
 
-    public Partida() {
-    }
 }

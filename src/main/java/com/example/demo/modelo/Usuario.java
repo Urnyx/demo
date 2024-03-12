@@ -3,10 +3,6 @@ package com.example.demo.modelo;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
@@ -21,11 +17,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-@Builder
-@AllArgsConstructor
-@Getter
-@Setter
-
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -53,6 +44,4 @@ public class Usuario {
     @ManyToMany(mappedBy = "users")
     private List<Partida> partidas;
 
-    public Usuario() {
-    }
 }

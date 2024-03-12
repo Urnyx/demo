@@ -2,7 +2,6 @@ package com.example.demo.modelo;
 
 import java.time.LocalDateTime;
 
-import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Entity;
@@ -15,10 +14,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "mensajes")
-@Builder
-@AllArgsConstructor
-@Getter
-@Setter
 public class Mensaje {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -32,7 +27,4 @@ public class Mensaje {
     @ManyToOne
     @JoinColumn(name = "usuarios_id")
     private Usuario user;
-
-    public Mensaje() {
-    }
 }
