@@ -11,21 +11,20 @@ import com.example.demo.repository.MensajeRepository;
 public class MensajeService{
     
 
-@Autowired
     private MensajeRepository mensajeRepository;
 
     public List<Mensaje> obtenerTodosLosMensajes() {
         return mensajeRepository.findAll();
     }
 
-    public Optional<Mensaje> buscarMensajePorId(Integer id) {
-        return mensajeRepository.findById(id);
-    }
 
     public Mensaje guardarMensaje(Mensaje mensaje) {
         return mensajeRepository.save(mensaje);
     }
 
+    public void actualizarContenido(Long mensajeId, String nuevoContenido) {
+        mensajeRepository.updateContenidoById(mensajeId, nuevoContenido);
+    }
     public void eliminarMensaje(Integer id) {
         mensajeRepository.deleteById(id);
     }
