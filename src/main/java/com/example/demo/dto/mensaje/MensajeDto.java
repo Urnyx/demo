@@ -1,4 +1,13 @@
-package com.example.demo.dto.modelo;
+package com.example.demo.dto.mensaje;
 
-public record MensajeDto() {
+import com.example.demo.dto.usuario.UsuarioDto;
+
+import java.time.LocalDateTime;
+
+public record MensajeDto(Long id,
+                         String destinatario,
+                         String creador,
+                         LocalDateTime create_at,
+                         String contenido,
+                         UsuarioDto user) {
 }

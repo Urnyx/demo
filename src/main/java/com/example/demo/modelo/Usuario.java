@@ -31,14 +31,14 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name = "user_name")
-    private String username;
+    private String userName;
     private String email;
     private String nombre;
     private String apellido;
     private Integer edad;
     private String password;
     private String rep_password;
-    private Boolean Enabled;
+    private Boolean enabled;
     private String foto;
     private String rol;
 
