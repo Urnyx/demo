@@ -7,6 +7,5 @@ import java.time.LocalDateTime;
 
 public record SugerenciaDto(Long id,
                             String descripcion,
-                            LocalDateTime create_at,
-                            UsuarioDto user) {
+                            LocalDateTime create_at) {
 }

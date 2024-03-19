@@ -8,6 +8,5 @@ public record MensajeDto(Long id,
                          String destinatario,
                          String creador,
                          LocalDateTime create_at,
-                         String contenido,
-                         UsuarioDto user) {
+                         String contenido) {
 }

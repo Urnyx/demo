@@ -18,8 +18,5 @@ public record UsuarioDto(Long id,
                          Boolean enable,
                          String foto,
                          String rol,
-                         LocalDateTime create_at,
-                         List<SugerenciaDto> sugerencias,
-                         List<MensajeDto> mensajes,
-                         List<PartidaDto> partidas) {
+                         LocalDateTime create_at) {
 }

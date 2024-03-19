@@ -15,6 +15,5 @@ public record PartidaDto(Long id,
                          LocalDateTime horaFinal,
                          Integer participantes,
                          Integer suplentes,
-                         String comentarios,
-                         List<UsuarioDto> users) {
+                         String comentarios) {
 }

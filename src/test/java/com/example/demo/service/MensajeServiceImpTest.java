@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @Testcontainers
-class MensajeServiceTest {
+class MensajeServiceImpTest {
 
     @Test
     void obtenerTodosLosMensajes() {
