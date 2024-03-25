@@ -59,7 +59,7 @@ class MensajeRepositoryTest extends AbstractDBTest{
     @Test
     void buscarMensajesPorId(){
         mensajes();
-        Optional<Mensaje> mensaje = mensajeRepository.findById(1);
+        Optional<Mensaje> mensaje = mensajeRepository.findById(1L);
         mensajeRepository.flush();
         assertThat(mensaje).isNotNull();
         assertThat(mensaje.get().getId()).isNotNull();
@@ -68,19 +68,9 @@ class MensajeRepositoryTest extends AbstractDBTest{
     void borrarPorId(){
         mensajes();
         List<Mensaje> mensajesAntes = mensajeRepository.findAll();
-        mensajeRepository.deleteById(1);
+        mensajeRepository.deleteById(1L);
         List<Mensaje> mensajesDespues = mensajeRepository.findAll();
         mensajeRepository.flush();
         assertThat(mensajesDespues.size()).isEqualTo(mensajesAntes.size()-1);
-    }
-
-    void updateMensajeSpy(){
-        Mensaje mensaje1 = Mensaje.builder()
-                .id(1L)
-                .creador("Fulanito de tal")
-                .destinatario("tal de fulanito")
-                .contenido("waos")
-                .build();
-
     }
 }

@@ -5,8 +5,11 @@ import com.example.demo.dto.usuario.UsuarioMapper;
 import com.example.demo.dto.usuario.UsuarioToSaveDto;
 import com.example.demo.modelo.Usuario;
 import com.example.demo.repository.UsuarioRepository;
+import com.example.demo.service.NotAbleToDeleteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -39,9 +42,28 @@ public class UsuarioServiceImp implements UsuarioService{
     }
 
     @Override
-    public void deleteUsuarioById(Long id) {
-        usuarioRepository.deleteById(id);
+    public UsuarioDto actualizarUsuario(Long id,UsuarioToSaveDto usuarioToSaveDto) {
+        return usuarioRepository.findById(id).map(usuarioIntDb ->{
+            usuarioIntDb.setNombre(usuarioToSaveDto.nombre());
+            usuarioIntDb.setUserName(usuarioToSaveDto.userName());
+            usuarioIntDb.setPassword(usuarioToSaveDto.password());
+            usuarioIntDb.setEmail(usuarioToSaveDto.email());
+
+            Usuario usuario = usuarioRepository.save(usuarioIntDb);
+            return usuarioMapper.usuarioToUsuarioDto(usuario);
+        }).orElseThrow(()-> new UsuarioNotFoundException("Usuario no encontrado"));
     }
 
+    @Override
+    public List<UsuarioDto> obtenerTodosLosUsuarios() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        return usuarios.stream().map(usuario -> usuarioMapper.usuarioToUsuarioDto(usuario)).toList();
+    }
 
+    @Override
+    public void deleteUsuarioById(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(()-> new NotAbleToDeleteException("Usuario no encontrado"));
+        usuarioRepository.deleteById(id);
+    }
 }

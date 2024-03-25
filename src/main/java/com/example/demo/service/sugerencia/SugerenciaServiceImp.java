@@ -5,6 +5,7 @@ import com.example.demo.dto.sugerencia.SugerenciaMapper;
 import com.example.demo.dto.sugerencia.SugerenciaToSaveDto;
 import com.example.demo.modelo.Sugerencia;
 import com.example.demo.repository.SugerenciaRepository;
+import com.example.demo.service.NotAbleToDeleteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,28 @@ public class SugerenciaServiceImp implements SugerenciaService{
 
     @Override
     public SugerenciaDto buscarSugerenciaByCreate_at(LocalDateTime localDateTime) {
-        Sugerencia sugerencia = sugerenciaRepository.findByCreate_at(localDateTime).orElseThrow(SugerenciaNotFoundException::new);
+        Sugerencia sugerencia = sugerenciaRepository.findByCreate_at(localDateTime)
+                .orElseThrow(SugerenciaNotFoundException::new);
         return sugerenciaMapper.sugerenciaToSugerenciaDto(sugerencia);
+    }
+
+    @Override
+    public SugerenciaDto actualizarSugerencia(Long id, SugerenciaToSaveDto sugerenciaToSaveDto) {
+        return sugerenciaRepository.findById(id)
+                .map(sugerendiaInDb ->{
+                    sugerendiaInDb.setDescripcion(sugerenciaToSaveDto.descripcion());
+                    sugerendiaInDb.setCreate_at(sugerenciaToSaveDto.create_at());
+
+                    Sugerencia sugerencia = sugerenciaRepository.save(sugerendiaInDb);
+
+                    return sugerenciaMapper.sugerenciaToSugerenciaDto(sugerencia);
+                }).orElseThrow(()-> new SugerenciaNotFoundException("sugerencia no encontrada"));
+    }
+
+    @Override
+    public void eliminarSugerencia(Long id) {
+        Sugerencia sugerencia = sugerenciaRepository.findById(id)
+                .orElseThrow(()-> new NotAbleToDeleteException("Sugerencia no encontrada"));
+        sugerenciaRepository.deleteById(id);
     }
 }
